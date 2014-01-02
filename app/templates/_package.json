@@ -1,0 +1,18 @@
+{
+  "name": "<%= appName %>",
+  "version": "0.0.0",
+  "description": "<%= appDescription %>",
+  "author": "<%= appAuthor %>",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "time-grunt": "~0.2.5",
+    "grunt-sass": "~0.9.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-autoprefixer": "~0.5.0",
+    "grunt-newer": "~0.6.0"
+  }
+}
