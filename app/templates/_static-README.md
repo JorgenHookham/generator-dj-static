@@ -1,0 +1,1 @@
+Grunt must generate static files.

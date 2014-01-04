@@ -1,6 +1,9 @@
 {
-  "name": "package",
+  "name": "<%= appName %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "dependencies": {
+    "foundation": "~5.0.2"
+    <%= (bowerComponents.indexOf('backbone') > -1) ? ',"backbone": "~1.1.0"' : '' %>
+  }
 }
 

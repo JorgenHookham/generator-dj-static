@@ -1,12 +1,12 @@
 {
-  "name": "generator-django-app",
+  "name": "generator-dj-static",
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/JorgenHookham/generator-django-app",
-  "bugs": "https://github.com/JorgenHookham/generator-django-app/issues",
+  "homepage": "https://github.com/JorgenHookham/generator-dj-static",
+  "bugs": "https://github.com/JorgenHookham/generator-dj-static/issues",
   "author": {
     "name": "Jørgen",
     "email": "jorgen@hookham.co",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/JorgenHookham/generator-django-app.git"
+    "url": "git://github.com/JorgenHookham/generator-dj-static.git"
   },
   "scripts": {
     "test": "mocha"

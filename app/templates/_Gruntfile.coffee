@@ -71,7 +71,7 @@ module.exports = (grunt) ->
     images:
       expand  : true
       cwd     : devImages
-      src     : ['**/*.{jpg,jpeg,png,gif}']
+      src     : ['**/*.{jpg,jpeg,png,gif,ico}']
       dest    : appImages
     other:
       expand  : true
@@ -89,6 +89,9 @@ module.exports = (grunt) ->
   # Plugins #
   #         #
 
+  # open, connect, jasmine
+  # combing, documentation
+
   [
     'grunt-autoprefixer'
     'grunt-contrib-clean'
@@ -97,6 +100,7 @@ module.exports = (grunt) ->
     'grunt-contrib-jshint'
     'grunt-contrib-watch'
     'grunt-newer'
+    'grunt-open'
     'grunt-sass'
   ].forEach(grunt.loadNpmTasks)
 
