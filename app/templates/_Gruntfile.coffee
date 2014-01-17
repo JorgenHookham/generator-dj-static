@@ -88,8 +88,7 @@ module.exports = (grunt) ->
           expand  : true
           cwd     : '<%%= project.app.static %>'
           src     : [
-            '**/*'
-            '!**/*README.MD'
+            '**/*!README.MD'
           ]
         }]
 
