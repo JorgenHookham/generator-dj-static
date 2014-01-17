@@ -1,5 +1,5 @@
 {
-  "name": "<%= appName %>",
+  "name": "<%= appname %>",
   "version": "0.0.0",
   "description": "<%= appDescription %>",
   "author": "<%= appAuthor %>",
@@ -8,12 +8,18 @@
     "grunt-autoprefixer": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",
+    <% if (sandbox) { %>"grunt-contrib-connect": "~0.5.0",<% } %>
     "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-imagemin": "~0.2.0",
     "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-newer": "~0.6.0",
     "grunt-open": "~0.2.2",
+    "grunt-rev": "~0.1.0",
     "grunt-sass": "~0.9.0",
-    "time-grunt": "~0.2.5"
+    "time-grunt": "~0.2.5",
+    "load-grunt-tasks": "~0.2.0"
   }
 }

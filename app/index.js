@@ -8,14 +8,14 @@ var DjangoAppGenerator = module.exports = function DjangoAppGenerator(args, opti
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    process.chdir('static/'+this.appName+'-development');
+    process.chdir('static/'+this.appname+'-development');
     this.installDependencies({
       skipInstall: options['skip-install'],
       callback: function () {
-        var appName = this.appName;
+        var appname = this.appname;
         console.log(
           '\nYou are ready to get coding!\n' +
-          'run this: cd static/'+appName+'-development && grunt develop\n'
+          'run this: cd static/'+appname+'-development && grunt develop\n'
         );
       }.bind(this)
     });
@@ -61,7 +61,7 @@ DjangoAppGenerator.prototype.askForAppDetails = function askForAppDetails() {
   var cb = this.async();
 
   var prompts = [{
-    name: 'appName',
+    name: 'appname',
     message: 'App Name:',
     default: process.cwd().split('/').slice(-1)[0]
   },{
@@ -73,7 +73,7 @@ DjangoAppGenerator.prototype.askForAppDetails = function askForAppDetails() {
   }];
 
   this.prompt(prompts, function (props) {
-    this.appName = props.appName;
+    this.appname = props.appname;
     this.appDescription = props.appDescription;
     this.appAuthor = props.appAuthor;
 
@@ -81,96 +81,78 @@ DjangoAppGenerator.prototype.askForAppDetails = function askForAppDetails() {
   }.bind(this));
 };
 
-DjangoAppGenerator.prototype.askForBowerComponents = function askForBowerComponents() {
+DjangoAppGenerator.prototype.askForCoffee = function askForCoffee() {
   var cb = this.async();
 
   var prompts = [{
-    type: 'checkbox',
-    name: 'bowerComponents',
-    message: 'Which Bower components would you like?',
-    choices: [
-      {name: '...', value: '', checked: true},
-      {name: 'backbone', value: 'backbone', checked: true}
-    ]
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.bowerComponents = props.bowerComponents;
-
-    cb();
-  }.bind(this));
-};
-
-DjangoAppGenerator.prototype.askForGruntTasks = function askForGruntTasks() {
-  var cb = this.async();
-
-  var prompts = [{
-    type: 'checkbox',
-    name: 'gruntTasks',
-    message: 'Which Grunt tasks would you like?',
-    choices: [
-      {name: 'css autoprefixer', value: 'autoprefixer', checked: true},
-      {name: 'coffeescript compiler', value: 'coffee', checked: true},
-      {name: 'sass compiler', value: 'sass', checked: true}
-    ]
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.gruntTasks = props.gruntTasks;
-
-    cb();
-  }.bind(this));
-};
-
-DjangoAppGenerator.prototype.askForUnitTesting = function askForUnitTesting() {
-  var cb = this.async();
-
-  var prompts = [{
+    name: 'coffee',
     type: 'confirm',
-    name: 'unitTesting',
-    message: 'Would you like support for javascript unit testing using Jasmine?'
+    message: 'Would you like to use coffeescript?',
+    default: true
   }];
 
   this.prompt(prompts, function (props) {
-    this.unitTesting = props.unitTesting;
+    this.coffee = props.coffee;
 
     cb();
   }.bind(this));
 };
 
-DjangoAppGenerator.prototype.app = function app() {
-  var appName = this.appName;
+DjangoAppGenerator.prototype.askForSandbox = function askForSandbox() {
+  var cb = this.async();
+
+  var prompts = [{
+    name: 'sandbox',
+    type: 'confirm',
+    message: 'Would you like a sandbox for pure and simple front-end development, without a Django back-end?',
+    default: true
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.sandbox = props.sandbox;
+
+    if (this.sandbox) {
+      var appname = this.appname;
+      this.template('_sandbox.html', 'static/'+appname+'-development/sandbox.html');
+    }
+
+    cb();
+  }.bind(this));
+};
+
+DjangoAppGenerator.prototype.scaffoldApp = function scaffoldApp() {
+  var appname = this.appname;
   var appDescription = this.appDescription;
   var appAuthor = this.appAuthor;
   this.mkdir('static');
-  this.mkdir('static/'+appName);
-  this.mkdir('static/'+appName+'-development');
-  this.mkdir('static/'+appName+'-development/img');
-  this.mkdir('static/'+appName+'-development/styles');
-  this.mkdir('static/'+appName+'-development/scripts');
-  this.mkdir('static/'+appName+'-development/scripts/models');
-  this.mkdir('static/'+appName+'-development/scripts/views');
-  this.mkdir('static/'+appName+'-development/scripts/controllers');
-  this.mkdir('static/'+appName+'-development/scripts/routers');
-  this.mkdir('static/'+appName+'-development/scripts/templates');
-  this.copy('_static-README.md', 'static/'+appName+'/README.md');
+  this.mkdir('static/'+appname);
+  this.mkdir('static/'+appname+'-development');
+  this.mkdir('static/'+appname+'-development/img');
+  this.mkdir('static/'+appname+'-development/styles');
+  this.mkdir('static/'+appname+'-development/scripts');
+  this.mkdir('static/'+appname+'-development/scripts/models');
+  this.mkdir('static/'+appname+'-development/scripts/views');
+  this.mkdir('static/'+appname+'-development/scripts/controllers');
+  this.mkdir('static/'+appname+'-development/scripts/routers');
+  this.mkdir('static/'+appname+'-development/scripts/templates');
+  this.copy('_static-README.md', 'static/'+appname+'/README.md');
 };
 
-DjangoAppGenerator.prototype.bower = function bower() {
-  var appName = this.appName;
+DjangoAppGenerator.prototype.makeBower = function makeBower() {
+  var appname = this.appname;
   var bowerComponents = this.bowerComponents;
-  this.template('_bower.json', 'static/'+appName+'-development/bower.json');
-  this.copy('_.bowerrc', 'static/'+appName+'-development/.bowerrc');
+  this.template('_bower.json', 'static/'+appname+'-development/bower.json');
+  this.copy('_.bowerrc', 'static/'+appname+'-development/.bowerrc');
 };
 
-DjangoAppGenerator.prototype.gruntfile = function gruntfile() {
-  var appName = this.appName;
+DjangoAppGenerator.prototype.makeGruntfile = function makeGruntfile() {
+  var appname = this.appname;
   var gruntTasks = this.gruntTasks;
-  this.template('_Gruntfile.coffee', 'static/'+appName+'-development/Gruntfile.coffee')
-  this.template('_package.json', 'static/'+appName+'-development/package.json');
+  this.template('_Gruntfile.coffee', 'static/'+appname+'-development/Gruntfile.coffee')
+  this.template('_package.json', 'static/'+appname+'-development/package.json');
 }
 
-DjangoAppGenerator.prototype.projectfiles = function projectfiles() {
-  var appName = this.appName;
-  this.copy('jshintrc', 'static/'+appName+'-development/.jshintrc');
+DjangoAppGenerator.prototype.makeOther = function makeOther() {
+  var appname = this.appname;
+  this.copy('jshintrc', 'static/'+appname+'-development/.jshintrc');
 };

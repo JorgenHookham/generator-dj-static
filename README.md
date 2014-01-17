@@ -5,12 +5,13 @@ static files for a [Grunt](http://gruntjs.com)-fuelled workflow and
 [Bower](http://bower.io)-powered dependecy management.
 
 ## Features
-* SASS Compilation
+* SASS Compilation (faster with libsass)
 * CSS Autoprefixing
 * Coffeescript Compilation
 * JS Linting
+* AMD with Requirejs (optimization with r.js)
 
-## Directory
+## Directory Structure
 ```
 └─ django-app
    └─ static
@@ -51,6 +52,8 @@ cd <djangoproject>/django-app/
 ```
 yo dj-static
 ```
+
+### Prompts
 
 ## License
 

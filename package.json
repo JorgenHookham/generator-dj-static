@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "django",
+    "static",
+    "modern",
+    "front-end",
+    "workflow"
   ],
   "homepage": "https://github.com/JorgenHookham/generator-dj-static",
   "bugs": "https://github.com/JorgenHookham/generator-dj-static/issues",
