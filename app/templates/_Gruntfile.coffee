@@ -68,17 +68,18 @@ module.exports = (grunt) ->
         hostname: 'localhost'
       livereload:
         options:
-          open: true
+          open: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>'
           base: ['<%%= project.app.static %>']
+      sandbox:
+        options:
+          open: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>/sandbox.html'
+          base: [
+            '<%%= project.app.static %>'
+            '../'
+          ]
       test:
         options:
           port: 9001
-
-    # Open a path in a browser
-    open:
-      sandbox:
-        path: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>/sandbox.html'
-        app: 'Google Chrome'
 
     # Empties folders to start fresh
     clean:
@@ -155,6 +156,11 @@ module.exports = (grunt) ->
         }]
     <% } %>
 
+    # Automatically inject Bower components into an HTML file
+    'bower-install':
+      sandbox:
+        html: '<%%= project.dev.static %>/sandbox.html'
+
     # Renames files for browser caching purposes
     rev:
       app:
@@ -228,8 +234,11 @@ module.exports = (grunt) ->
   grunt.registerTask 'develop',
   'everything you need to start writing code', [
     'build:development'
+    <% if (sandbox) { %>
+    'connect:sandbox'
+    <% } else { %>
     'connect:livereload'
-    <% if (sandbox) { %>'open:sandbox'<% } %>
+    <% } %>
     'watch'
   ]
 
@@ -246,6 +255,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build:development',
   'build static files for a development environment', [
     'clean:static'
+    'bower-install'
     'sass:development'
     'copy:css'
     'copy:html'
