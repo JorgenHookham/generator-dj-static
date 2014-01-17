@@ -30,7 +30,7 @@ module.exports = (grunt) ->
     watch:
       sass:
         options : {cwd: '<%%= project.dev.styles %>'}
-        files   : ['**/*.{scss,sass}']
+        files   : ['**/*.{scss,sass}', '!**/_*.{scss,sass}']
         tasks   : ['newer:sass:development', 'newer:autoprefixer']
       css:
         options : {cwd: '<%%= project.dev.styles %>'}
