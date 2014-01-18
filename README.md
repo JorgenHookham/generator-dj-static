@@ -11,6 +11,7 @@ modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
 * **CoffeeScript** Compiles your coffeescript to javascript
 * **Sandbox** Write your front-end code free of the Django back-end
 * **LiveReload** Instant feedback while you code
+* **Pick your js framework** Integrated support for Backbone and angular
 
 ## Directory Structure
 

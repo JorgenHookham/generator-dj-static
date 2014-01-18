@@ -120,6 +120,27 @@ DjangoAppGenerator.prototype.askForSandbox = function askForSandbox() {
   }.bind(this));
 };
 
+DjangoAppGenerator.prototype.askForFrameworks = function askForFrameworks() {
+  var cb = this.async();
+
+  var prompts = [{
+    name: 'frameworks',
+    type: 'checkbox',
+    message: 'Which js framework(s) would you like?',
+    choices: [
+      'backbone',
+      'angular'
+    ]
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.backbone = props.frameworks.indexOf('backbone') >= 0;
+    this.angular = props.frameworks.indexOf('angular') >= 0;
+    console.log(this.backbone, this.angular);
+    cb();
+  }.bind(this));
+};
+
 DjangoAppGenerator.prototype.scaffoldApp = function scaffoldApp() {
   var appname = this.appname;
   var appDescription = this.appDescription;

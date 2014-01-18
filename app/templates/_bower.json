@@ -2,8 +2,9 @@
   "name": "<%= appname %>",
   "version": "0.0.0",
   "dependencies": {
-    "foundation": "~5.0.2",
-    "backbone": "~1.1.0"
+    "foundation": "~5.0.2"
+    <% if (backbone) { %>,"backbone": "~1.1.0"<% } %>
+    <% if (angular) { %>,"angular": "~1.2.9"<% } %>
   }
 }
 
