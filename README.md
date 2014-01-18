@@ -1,6 +1,6 @@
 # Django static generator
 
-[Yeoman](http://yeoman.io) generator that equips an existing Django app with scaffolding for a
+[Yeoman](http://yeoman.io) generator that equips an existing Django app for a
 modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
 [Bower](http://bower.io)-powered dependecy management.
 
@@ -12,6 +12,7 @@ modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
 * **Sandbox** Write your front-end code free of the Django back-end
 * **LiveReload** Instant feedback while you code
 * **Pick your js framework** Integrated support for Backbone and angular
+* **Foundation** CSS framework
 
 ## Directory Structure
 
