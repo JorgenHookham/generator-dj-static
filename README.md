@@ -49,16 +49,26 @@ This is the generator for you.
 Because it's not as “end-to-end” as I'd like, generator-dj-static isn't an npm yet. If you want to
 try it out, you'll need to clone this repo and link to your global npm manually.
 
-`git clone https://github.com/JorgenHookham/generator-dj-static`
-`cd generator-dj-static`
-`npm link`
+```
+git clone https://github.com/JorgenHookham/generator-dj-static
+```
+```
+cd generator-dj-static
+```
+```
+npm link
+```
 
 ### Usage
 
 Change directory into your django app and tap Yeoman on the shoulder.
 
-`cd <djangoproject>/django-app/`
-`yo dj-static`
+```
+cd <djangoproject>/django-app/
+```
+```
+yo dj-static
+```
 
 ### Prompts
 
