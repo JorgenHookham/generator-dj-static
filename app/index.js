@@ -151,11 +151,6 @@ DjangoAppGenerator.prototype.scaffoldApp = function scaffoldApp() {
   this.mkdir('static/'+appname+'-development/img');
   this.mkdir('static/'+appname+'-development/styles');
   this.mkdir('static/'+appname+'-development/scripts');
-  this.mkdir('static/'+appname+'-development/scripts/models');
-  this.mkdir('static/'+appname+'-development/scripts/views');
-  this.mkdir('static/'+appname+'-development/scripts/controllers');
-  this.mkdir('static/'+appname+'-development/scripts/routers');
-  this.mkdir('static/'+appname+'-development/scripts/templates');
   this.copy('_static-README.md', 'static/'+appname+'/README.md');
 };
 
