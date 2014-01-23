@@ -1,0 +1,24 @@
+
+
+#              #
+# System Files #
+#              #
+
+.DS_STORE
+
+#                     #
+# Development Plugins #
+#                     #
+
+bower_components
+node_modules
+
+
+#                #
+# Compiled Files #
+#                #
+
+.tmp
+.sass-cache
+static/<%= appname %>
+!static/<%= appname %>/README.md

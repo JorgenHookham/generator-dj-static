@@ -136,7 +136,6 @@ DjangoAppGenerator.prototype.askForFrameworks = function askForFrameworks() {
   this.prompt(prompts, function (props) {
     this.backbone = props.frameworks.indexOf('backbone') >= 0;
     this.angular = props.frameworks.indexOf('angular') >= 0;
-    console.log(this.backbone, this.angular);
     cb();
   }.bind(this));
 };
@@ -171,4 +170,5 @@ DjangoAppGenerator.prototype.makeGruntfile = function makeGruntfile() {
 DjangoAppGenerator.prototype.makeOther = function makeOther() {
   var appname = this.appname;
   this.copy('jshintrc', 'static/'+appname+'-development/.jshintrc');
+  this.template('_.gitignore', 'static/.gitignore');
 };
