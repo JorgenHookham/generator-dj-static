@@ -38,14 +38,14 @@ modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
       │  │  ├─ routers
       │  │  ├─ templates
       │  │  ├─ views
-      │  │  └─ sandbox.coffee
+      │  │  └─ sandbox.coffee *
       │  ├─ styles
       │  ├─ .bowerrc
       │  ├─ .jshintrc
       │  ├─ bower.json
       │  ├─ Gruntfile.coffee
       │  ├─ package.json
-      │  └─ sandbox.html
+      │  └─ sandbox.html *
       └─ .gitignore
 ```
 
