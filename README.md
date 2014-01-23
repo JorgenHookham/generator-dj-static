@@ -30,21 +30,23 @@ modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
       ├─ bower_components
       ├─ django-app
       │  └─ README.md
-      └─ django-app-development
-         ├─ img
-         ├─ scripts
-         │  ├─ controllers
-         │  ├─ models
-         │  ├─ routers
-         │  ├─ templates
-         │  └─ views
-         ├─ styles
-         ├─ .bowerrc
-         ├─ .jshintrc
-         ├─ bower.json
-         ├─ Gruntfile.coffee
-         ├─ package.json
-         └─ sandbox.html
+      ├─ django-app-development
+      │  ├─ img
+      │  ├─ scripts
+      │  │  ├─ controllers
+      │  │  ├─ models
+      │  │  ├─ routers
+      │  │  ├─ templates
+      │  │  ├─ views
+      │  │  └─ sandbox.coffee
+      │  ├─ styles
+      │  ├─ .bowerrc
+      │  ├─ .jshintrc
+      │  ├─ bower.json
+      │  ├─ Gruntfile.coffee
+      │  ├─ package.json
+      │  └─ sandbox.html
+      └─ .gitignore
 ```
 
 ## Getting Started
