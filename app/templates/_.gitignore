@@ -20,5 +20,5 @@ node_modules
 
 .tmp
 .sass-cache
-static/<%= appname %>
-!static/<%= appname %>/README.md
+<%= appname %>
+!<%= appname %>/README.md
