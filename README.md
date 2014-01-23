@@ -93,15 +93,6 @@ integrated yet. Feel free to pick your own poison.
 * JavaScript linting
 * Automatic wiring of Bower components
 
-### Frameworks
-
-* Foundation
-* Bootstrap 3
-* Requirejs
-* Backbone
-* Angular
-* Ember
-
 ### Build Tasks
 
 * Requirejs optimization
