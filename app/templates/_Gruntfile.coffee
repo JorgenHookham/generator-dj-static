@@ -120,7 +120,7 @@ module.exports = (grunt) ->
       static:
         expand  : true
         cwd     : '<%%= project.app.styles %>'
-        src     : ['**/*']
+        src     : ['**/*.css']
         dest    : '<%%= project.app.styles %>'
 
     # Checks for common js errors and syntax
