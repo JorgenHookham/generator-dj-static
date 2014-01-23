@@ -6,13 +6,21 @@ modern front-end workflow, with [Grunt](http://gruntjs.com)-fuelled tasks and
 
 ## Features
 
-* **Libsass** *Blazing* fast sass compilation
+### Write stylesheets more easily
+* **Libsass** *Blazing* fast sass compilation!!
 * **Autoprefixer** No need to hand-write vendor-specific css prefixes
-* **CoffeeScript** Compiles your coffeescript to javascript
-* **Sandbox** Write your front-end code free of the Django back-end
-* **LiveReload** Instant feedback while you code
-* **Pick your js framework** Integrated support for Backbone and angular
-* **Foundation** CSS framework
+* **Zurb Foundation 5** A responsive foundation to build on
+
+### Write coffeescript, if you want to
+* **Optional CoffeeScript** Compiles your coffeescript to javascript
+* **Source Maps** Work with your coffeescript source files in the browser
+
+### Your own front-end development sandbox, if you like
+* **Optional Sandbox** Write your front-end code free of the Django back-end
+
+### Backbone
+* **Backbonejs**
+* **Requirejs**
 
 ## Directory Structure
 

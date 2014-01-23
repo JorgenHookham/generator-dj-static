@@ -111,31 +111,6 @@ DjangoAppGenerator.prototype.askForSandbox = function askForSandbox() {
   this.prompt(prompts, function (props) {
     this.sandbox = props.sandbox;
 
-    if (this.sandbox) {
-      var appname = this.appname;
-      this.template('_sandbox.html', 'static/'+appname+'-development/sandbox.html');
-    }
-
-    cb();
-  }.bind(this));
-};
-
-DjangoAppGenerator.prototype.askForFrameworks = function askForFrameworks() {
-  var cb = this.async();
-
-  var prompts = [{
-    name: 'frameworks',
-    type: 'checkbox',
-    message: 'Which js framework(s) would you like?',
-    choices: [
-      'backbone',
-      'angular'
-    ]
-  }];
-
-  this.prompt(prompts, function (props) {
-    this.backbone = props.frameworks.indexOf('backbone') >= 0;
-    this.angular = props.frameworks.indexOf('angular') >= 0;
     cb();
   }.bind(this));
 };
@@ -151,6 +126,14 @@ DjangoAppGenerator.prototype.scaffoldApp = function scaffoldApp() {
   this.mkdir('static/'+appname+'-development/styles');
   this.mkdir('static/'+appname+'-development/scripts');
   this.copy('_static-README.md', 'static/'+appname+'/README.md');
+};
+
+DjangoAppGenerator.prototype.makeSandbox = function makeSandbox() {
+  if (this.sandbox) {
+    var appname = this.appname;
+    this.template('_sandbox.html', 'static/'+appname+'-development/sandbox.html');
+    this.template('_sandbox.coffee', 'static/'+appname+'-development/scripts/sandbox.coffee');
+  }
 };
 
 DjangoAppGenerator.prototype.makeBower = function makeBower() {
