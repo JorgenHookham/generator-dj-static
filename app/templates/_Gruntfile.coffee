@@ -55,7 +55,7 @@ module.exports = (grunt) ->
           '<%%= project.app.styles %>/**/*'
           '<%%= project.app.scripts %>/**/*'
           '<%%= project.app.images %>/**/*'
-          '<%%= project.app.static %>**/*.html'
+          '<%%= project.app.static %>/**/*.html'
         ]
 
     # Runs a simple server for front-end testing and/or development
@@ -218,7 +218,7 @@ module.exports = (grunt) ->
         files: [{
           expand  : true
           cwd     : '<%%= project.dev.static %>'
-          src     : ['**/*.html']
+          src     : ['**/*.html', '!node_modules/**/*']
           dest    : '<%%= project.app.static %>'
         }]
 
