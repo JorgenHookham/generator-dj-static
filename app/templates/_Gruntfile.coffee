@@ -68,13 +68,14 @@ module.exports = (grunt) ->
         options:
           open: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>'
           base: ['<%%= project.app.static %>']
-      sandbox:
+      <% if (sandbox) { %>sandbox:
         options:
           open: 'http://<%%= connect.options.hostname %>:<%%= connect.options.port %>/sandbox.html'
           base: [
             '<%%= project.app.static %>'
             '../'
           ]
+      <% } %>
       test:
         options:
           port: 9001
@@ -156,9 +157,9 @@ module.exports = (grunt) ->
     <% } %>
 
     # Automatically inject Bower components into an HTML file
-    'bower-install':
+    <% if (sandbox) { %>'bower-install':
       sandbox:
-        html: '<%%= project.dev.static %>/sandbox.html'
+        html: '<%%= project.dev.static %>/sandbox.html'<% } %>
 
     # Renames files for browser caching purposes
     rev:
@@ -233,11 +234,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'develop',
   'everything you need to start writing code', [
     'build:development'
-    <% if (sandbox) { %>
-    'connect:sandbox'
-    <% } else { %>
-    'connect:livereload'
-    <% } %>
+    <% if (sandbox) { %>'connect:sandbox'<% } else { %>'connect:livereload'<% } %>
     'watch'
   ]
 
@@ -254,7 +251,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build:development',
   'build static files for a development environment', [
     'clean:static'
-    'bower-install'
+    <% if (sandbox) { %>'bower-install'<% } %>
     'sass:development'
     'copy:css'
     'copy:html'
