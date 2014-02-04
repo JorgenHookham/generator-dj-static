@@ -36,12 +36,10 @@ module.exports = (grunt) ->
         options : {cwd: '<%%= project.dev.styles %>'}
         files   : ['**/*.css']
         tasks   : ['newer:copy:css', 'newer:autoprefixer']
-      <% if (coffee) { %>
-      coffee:
+      <% if (coffee) { %>coffee:
         options : {cwd: '<%%= project.dev.scripts %>'}
         files   : ['**/*.coffee']
-        tasks   : ['newer:coffee:development']
-      <% } %>
+        tasks   : ['newer:coffee:development']<% } %>
       js:
         options : {cwd: '<%%= project.dev.scripts %>'}
         files   : ['**/*.js']
