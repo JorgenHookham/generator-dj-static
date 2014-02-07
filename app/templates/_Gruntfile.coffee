@@ -31,7 +31,7 @@ module.exports = (grunt) ->
       sass:
         options : {cwd: '<%%= project.dev.styles %>'}
         files   : ['**/*.{scss,sass}', '!**/_*.{scss,sass}']
-        tasks   : ['newer:sass:development', 'newer:autoprefixer']
+        tasks   : ['newer:sass:dev', 'newer:autoprefixer']
       css:
         options : {cwd: '<%%= project.dev.styles %>'}
         files   : ['**/*.css']
@@ -47,7 +47,7 @@ module.exports = (grunt) ->
       html:
         options : {cwd: '<%%= project.dev.static %>'}
         files   : ['**/*.html']
-        tasks   : ['copy:html']
+        tasks   : ['copy:other']
       livereload:
         options:
           livereload: '<%%= connect.options.livereload %>'
@@ -95,17 +95,8 @@ module.exports = (grunt) ->
 
     # Compiles sass to css
     sass:
-      development:
+      dev:
         options: {outputStyle: 'nested'}
-        files: [{
-          expand  : true
-          cwd     : '<%%= project.dev.styles %>'
-          src     : ['**/*.{sass,scss}']
-          dest    : '<%%= project.app.styles %>'
-          ext     : '.css'
-        }]
-      production:
-        options: {outputStyle: 'compressed'}
         files: [{
           expand  : true
           cwd     : '<%%= project.dev.styles %>'
@@ -177,6 +168,16 @@ module.exports = (grunt) ->
           dest    : '<%%= project.app.images %>'
         }]
 
+    # Minifies svg
+    svgmin:
+      app:
+        files: [{
+          expand  : true
+          cwd     : '<%%= project.dev.images %>'
+          src     : ['**/*.{svg}']
+          dest    : '<%%= project.app.images %>'
+        }]
+
     # Minifies css
     cssmin:
       app:
@@ -188,11 +189,26 @@ module.exports = (grunt) ->
           ext     : '.css'
         }]
 
+    # Minfies html
+    htmlmin:
+      app:
+        files: [{
+          expand  : true
+          cwd     : '<%%= project.app.static %>'
+          src     : ['**/*.{html}']
+          dest    : '<%%= project.app.static %>'
+          ext     : '.css'
+        }]
+
     # Minifies js
     uglify:
       app:
-        files:
-          '<%%= project.dev.scripts %>': ['<%%= project.dev.scripts %>']
+        files: [{
+          expand  : true
+          cwd     : '<%= project.app.scripts %>'
+          src     : ['**/*.js']
+          dest    : '<%= project.app.scripts %>'
+        }]
 
     # Copies remaining files to places other tasks can use
     copy:
@@ -210,17 +226,28 @@ module.exports = (grunt) ->
           src     : ['**/*.js']
           dest    : '<%%= project.app.scripts %>'
         }]
-      html:
+      other:
         files: [{
           expand  : true
           cwd     : '<%%= project.dev.static %>'
-          src     : ['**/*.html', '!node_modules/**/*']
+          src     : [
+            '**/*.{ico,png,txt}'
+            '**/*.webp'
+            'styles/fonts/**/*.*'
+            '**/*.html'
+            '!node_modules/**/*']
           dest    : '<%%= project.app.static %>'
         }]
 
     # Run some tasks in parallel to speed up build process
     concurrent:
-      server: []
+      staging: [<% if (coffee) { %>
+        'coffee:development',<% } %>
+        'sass:dev'
+        'copy:css'
+        'imagemin'
+        'svgmin'
+      ]
       test: []
       app: []
 
@@ -243,19 +270,32 @@ module.exports = (grunt) ->
     #
   ]
 
+  grunt.registerTask 'build:staging',
+  'build static files for a staging environment', [
+    'clean:static'
+    'concurrent:staging'
+    'autoprefixer:static'
+    'jshint:js'
+    'copy:js'
+    'cssmin'
+    'uglify'
+    'rev'
+    'htmlmin'
+  ]
+
   grunt.registerTask 'build:development',
   'build static files for a development environment', [
     'clean:static'
-    'sass:development'
+    'sass:dev'
     'copy:css'
-    'copy:html'
+    'copy:other'
     'autoprefixer:static'
     <% if (coffee) { %>'coffee:development'<% } %>
     'jshint:js'
     'copy:js'
   ]
 
-  grunt.registerTask 'default', ['develop']
+  grunt.registerTask 'default', ['serve']
 
   # § #
 
