@@ -156,11 +156,6 @@ module.exports = (grunt) ->
         }]
     <% } %>
 
-    # Automatically inject Bower components into an HTML file
-    <% if (sandbox) { %>'bower-install':
-      sandbox:
-        html: '<%%= project.dev.static %>/sandbox.html'<% } %>
-
     # Renames files for browser caching purposes
     rev:
       app:
@@ -251,7 +246,6 @@ module.exports = (grunt) ->
   grunt.registerTask 'build:development',
   'build static files for a development environment', [
     'clean:static'
-    <% if (sandbox) { %>'bower-install'<% } %>
     'sass:development'
     'copy:css'
     'copy:html'
