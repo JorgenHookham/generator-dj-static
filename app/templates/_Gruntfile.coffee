@@ -231,7 +231,7 @@ module.exports = (grunt) ->
 
   }
 
-  grunt.registerTask 'develop',
+  grunt.registerTask 'serve',
   'everything you need to start writing code', [
     'build:development'
     <% if (sandbox) { %>'connect:sandbox'<% } else { %>'connect:livereload'<% } %>

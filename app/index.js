@@ -15,7 +15,7 @@ var DjangoAppGenerator = module.exports = function DjangoAppGenerator(args, opti
         var appname = this.appname;
         console.log(
           '\nYou are ready to get coding!\n' +
-          'run this: cd static/'+appname+'-development && grunt develop\n'
+          'run this: cd static/'+appname+'-development && grunt serve\n'
         );
       }.bind(this)
     });
